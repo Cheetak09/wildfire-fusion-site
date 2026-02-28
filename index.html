@@ -15,6 +15,7 @@
         <span class="dot"></span>
         <span>RGB–Thermal Fusion</span>
       </div>
+
       <nav class="links">
         <a href="#overview">Overview</a>
         <a href="#method">Method</a>
@@ -22,8 +23,10 @@
         <a href="#results">Results</a>
         <a href="#team">Team</a>
       </nav>
-      <button class="menu" id="menuBtn">Menu</button>
+
+      <button class="menu" id="menuBtn" aria-label="Open menu">Menu</button>
     </div>
+
     <div class="mobile" id="mobileNav">
       <a href="#overview">Overview</a>
       <a href="#method">Method</a>
@@ -57,7 +60,7 @@
               <div class="stat-lbl">Multimodal inputs</div>
             </div>
             <div class="stat">
-              <div class="stat-num">Two Fusion Methods</div>
+              <div class="stat-num">2 Fusion Methods</div>
               <div class="stat-lbl">Weighted vs Product</div>
             </div>
             <div class="stat">
@@ -73,7 +76,6 @@
             <span class="muted">Algorithm-first focus</span>
           </div>
 
-          <!-- Architecture SVG -->
           <div class="svg-wrap">
             <svg viewBox="0 0 860 520" role="img" aria-label="Algorithmic pipeline diagram">
               <defs>
@@ -86,16 +88,14 @@
               <rect x="18" y="18" width="824" height="484" rx="18" fill="url(#g1)" stroke="#243042" stroke-width="2"/>
               <text x="40" y="60" fill="#d6e2ff" font-size="22" font-family="system-ui">RGB–Thermal Fusion Pipeline</text>
 
-              <!-- Inputs -->
               <rect x="50" y="110" width="230" height="110" rx="14" fill="#0b1220" stroke="#2a3a55" stroke-width="2"/>
               <text x="70" y="150" fill="#e9f0ff" font-size="18" font-family="system-ui">RGB Image</text>
-              <text x="70" y="180" fill="#9db0d1" font-size="14" font-family="system-ui">visual texture, smoke, flame cues</text>
+              <text x="70" y="180" fill="#9db0d1" font-size="14" font-family="system-ui">smoke + flame visual cues</text>
 
               <rect x="50" y="250" width="230" height="110" rx="14" fill="#0b1220" stroke="#2a3a55" stroke-width="2"/>
               <text x="70" y="290" fill="#e9f0ff" font-size="18" font-family="system-ui">Thermal Image</text>
-              <text x="70" y="320" fill="#9db0d1" font-size="14" font-family="system-ui">heat signatures, low visibility support</text>
+              <text x="70" y="320" fill="#9db0d1" font-size="14" font-family="system-ui">heat signatures in low visibility</text>
 
-              <!-- Models -->
               <rect x="320" y="110" width="250" height="110" rx="14" fill="#0b1220" stroke="#2a3a55" stroke-width="2"/>
               <text x="340" y="150" fill="#e9f0ff" font-size="18" font-family="system-ui">YOLO Model (RGB)</text>
               <text x="340" y="180" fill="#9db0d1" font-size="14" font-family="system-ui">outputs P(fire | RGB)</text>
@@ -104,20 +104,17 @@
               <text x="340" y="290" fill="#e9f0ff" font-size="18" font-family="system-ui">YOLO Model (Thermal)</text>
               <text x="340" y="320" fill="#9db0d1" font-size="14" font-family="system-ui">outputs P(fire | thermal)</text>
 
-              <!-- Fusion -->
               <rect x="610" y="170" width="200" height="140" rx="14" fill="#0b1220" stroke="#2a3a55" stroke-width="2"/>
               <text x="630" y="210" fill="#e9f0ff" font-size="18" font-family="system-ui">Fusion Layer</text>
               <text x="630" y="240" fill="#9db0d1" font-size="14" font-family="system-ui">Weighted fusion</text>
               <text x="630" y="262" fill="#9db0d1" font-size="14" font-family="system-ui">Product fusion</text>
               <text x="630" y="295" fill="#9db0d1" font-size="14" font-family="system-ui">Final decision</text>
 
-              <!-- Arrows -->
               <path d="M280 165 L320 165" stroke="#6ee7ff" stroke-width="3" fill="none"/>
               <path d="M280 305 L320 305" stroke="#6ee7ff" stroke-width="3" fill="none"/>
               <path d="M570 165 L610 240" stroke="#a78bfa" stroke-width="3" fill="none"/>
               <path d="M570 305 L610 240" stroke="#a78bfa" stroke-width="3" fill="none"/>
 
-              <!-- Output -->
               <rect x="610" y="345" width="200" height="90" rx="14" fill="#0b1220" stroke="#2a3a55" stroke-width="2"/>
               <text x="630" y="385" fill="#e9f0ff" font-size="18" font-family="system-ui">Output</text>
               <text x="630" y="412" fill="#9db0d1" font-size="14" font-family="system-ui">fire / no-fire</text>
@@ -132,19 +129,19 @@
       <div class="container">
         <h2>Overview</h2>
         <p class="lead">
-          Our project explores multimodal fusion to improve wildfire detection reliability.
-          Instead of relying on a single sensor stream, we merge RGB and thermal predictions
-          using two fusion algorithms and compare performance under the same evaluation conditions.
+          We explore multimodal fusion to improve wildfire detection reliability.
+          Instead of relying on one sensor stream, we merge RGB and thermal predictions
+          and compare two fusion strategies under consistent evaluation.
         </p>
 
         <div class="grid3">
           <div class="panel">
             <h3>Why RGB?</h3>
-            <p>Strong visual context (smoke patterns, flame texture), but sensitive to glare and lighting shifts.</p>
+            <p>Strong context (smoke patterns, flame texture), but sensitive to glare and lighting shifts.</p>
           </div>
           <div class="panel">
             <h3>Why Thermal?</h3>
-            <p>Reliable heat cues and low-visibility operation, but may confuse hot non-fire objects.</p>
+            <p>Reliable heat cues in low visibility, but can confuse hot non-fire objects.</p>
           </div>
           <div class="panel">
             <h3>Why Fusion?</h3>
@@ -163,16 +160,16 @@
             <h3>Training Approach</h3>
             <ul>
               <li>Transfer learning from pretrained YOLO weights</li>
-              <li>Separate training for RGB and thermal modalities</li>
-              <li>Evaluation using Precision, Recall, F1-score, and Accuracy</li>
+              <li>Separate models for RGB and thermal modalities</li>
+              <li>Metrics: Precision, Recall, F1-score, Accuracy</li>
             </ul>
           </div>
           <div class="panel">
             <h3>Data Requirements</h3>
             <ul>
               <li>Paired RGB–thermal samples</li>
-              <li>Consistent labeling for each modality</li>
-              <li>Strict split policy to reduce data leakage</li>
+              <li>Consistent labels for each modality</li>
+              <li>Strict split policy to reduce leakage</li>
             </ul>
           </div>
         </div>
@@ -191,81 +188,80 @@
           <div class="panel">
             <h3>Weighted Late Fusion (Baseline)</h3>
             <p class="eq">P<sub>fused</sub> = α·P<sub>rgb</sub> + (1−α)·P<sub>th</sub></p>
-            <p>Flexible weighting lets us bias toward the more reliable sensor under specific conditions.</p>
+            <p>Bias the final decision toward the modality that performs best under certain conditions.</p>
           </div>
 
           <div class="panel">
             <h3>Product Fusion (Agreement-Based)</h3>
             <p class="eq">P<sub>fused</sub> ∝ P<sub>rgb</sub> · P<sub>th</sub></p>
-            <p>Emphasizes cross-modal agreement—high confidence only when both modalities support fire.</p>
-          </div>
-        </div>
-
-        <!-- Fusion SVG -->
-        <div class="panel mt">
-          <h3>Fusion Comparison Visual</h3>
-          <div class="svg-wrap">
-            <svg viewBox="0 0 900 260" role="img" aria-label="Fusion comparison diagram">
-              <rect x="20" y="24" width="860" height="212" rx="16" fill="#0b1220" stroke="#2a3a55" stroke-width="2"/>
-              <text x="48" y="70" fill="#e9f0ff" font-size="18" font-family="system-ui">Two Late-Fusion Strategies</text>
-
-              <rect x="48" y="95" width="380" height="118" rx="14" fill="#0f1a2c" stroke="#2a3a55" stroke-width="2"/>
-              <text x="70" y="128" fill="#d6e2ff" font-size="16" font-family="system-ui">Weighted Fusion</text>
-              <text x="70" y="158" fill="#9db0d1" font-size="14" font-family="system-ui">Smooth, tunable α</text>
-              <text x="70" y="182" fill="#9db0d1" font-size="14" font-family="system-ui">Can favor stronger modality</text>
-
-              <rect x="470" y="95" width="380" height="118" rx="14" fill="#0f1a2c" stroke="#2a3a55" stroke-width="2"/>
-              <text x="492" y="128" fill="#d6e2ff" font-size="16" font-family="system-ui">Product Fusion</text>
-              <text x="492" y="158" fill="#9db0d1" font-size="14" font-family="system-ui">Agreement-based confidence</text>
-              <text x="492" y="182" fill="#9db0d1" font-size="14" font-family="system-ui">Reduces one-sensor false alarms</text>
-            </svg>
+            <p>High confidence only when both modalities agree, reducing one-sensor false alarms.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- RESULTS -->
-    <div class="grid3">
-  <div class="panel">
-    <h3>RGB-only</h3>
-    <p class="muted">mAP50 / mAP50–95:</p>
-    <p class="big" id="rgbMetricValue">__%</p>
-  </div>
+    <section class="section" id="results">
+      <div class="container">
+        <h2>Results</h2>
+        <p class="lead">
+          Summary of single-modality performance and late-fusion outcome. (Update these numbers anytime in <code>script.js</code>.)
+        </p>
 
-  <div class="panel">
-    <h3>Thermal-only</h3>
-    <p class="muted">mAP50 / mAP50–95:</p>
-    <p class="big" id="thMetricValue">__%</p>
-  </div>
+        <div class="metrics">
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="badge">RGB</span>
+              <span class="muted">Model performance</span>
+            </div>
+            <div class="metric-big" id="rgbMetric">95.7% / 0.82</div>
+            <div class="metric-sub">Accuracy / F1 (placeholder)</div>
+          </div>
 
-  <div class="panel">
-    <h3>Fused</h3>
-    <p class="muted">Best method:</p>
-    <p class="big" id="fusedMetricValue">__</p>
-  </div>
-</div>
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="badge">Thermal</span>
+              <span class="muted">Model performance</span>
+            </div>
+            <div class="metric-big" id="thMetric">96.6% / 0.88</div>
+            <div class="metric-sub">Accuracy / F1 (placeholder)</div>
+          </div>
 
-<div class="panel mt">
-  <h3>Example Predictions</h3>
-  <p class="muted" id="bestFusionLine">Best fusion: __</p>
+          <div class="metric-card glow">
+            <div class="metric-top">
+              <span class="badge badge2">Fused</span>
+              <span class="muted">Best method</span>
+            </div>
+            <div class="metric-big" id="fusedMetric">Weighted (α≈0.60)</div>
+            <div class="metric-sub">Best fused accuracy: <span id="fusedAcc">67%</span></div>
+          </div>
+        </div>
 
-  <p class="muted">Add images in <code>assets/</code> and update the filenames below.</p>
+        <div class="panel mt">
+          <div class="panel-head">
+            <h3>Sample Outputs</h3>
+            <p class="muted">Hover to zoom. Images remain solid (not affected by background).</p>
+          </div>
 
-  <div class="imgrow">
-    <figure>
-    <img src="assets/RGB Result Image.jpeg" alt="RGB example" />
-      <figcaption>RGB model output</figcaption>
-    </figure>
-    <figure>
-      <img src="assets/Thermal Result image.jpeg" alt="Thermal example" />
-      <figcaption>Thermal model output</figcaption>
-    </figure>
-    <figure>
-      <img src="assets/Result 1.jpeg" alt="Fusion example" />
-      <figcaption>Fused decision</figcaption>
-    </figure>
-  </div>
-</div>
+          <div class="imgrow">
+            <figure>
+              <img src="assets/RGB Result Image.jpeg" alt="RGB example" loading="lazy" />
+              <figcaption>RGB output</figcaption>
+            </figure>
+
+            <figure>
+              <img src="assets/Thermal Result image.jpeg" alt="Thermal example" loading="lazy" />
+              <figcaption>Thermal output</figcaption>
+            </figure>
+
+            <figure>
+              <img src="assets/Result 1.jpeg" alt="Fusion example" loading="lazy" />
+              <figcaption>Fused output</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- TEAM -->
     <section class="section" id="team">
