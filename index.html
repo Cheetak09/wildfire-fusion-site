@@ -225,53 +225,47 @@
     </section>
 
     <!-- RESULTS -->
-    <section class="section" id="results">
-      <div class="container">
-        <h2>Results</h2>
-        <p class="lead">
-          Replace the placeholders below with your real metrics and example predictions.
-          This layout is designed for quick updates before submission.
-        </p>
+    <div class="grid3">
+  <div class="panel">
+    <h3>RGB-only</h3>
+    <p class="muted">mAP50 / mAP50–95:</p>
+    <p class="big" id="rgbMetricValue">__%</p>
+  </div>
 
-        <div class="grid3">
-          <div class="panel">
-            <h3>RGB-only</h3>
-            <p class="muted">Accuracy / F1:</p>
-            <p class="big">__%</p>
-          </div>
-          <div class="panel">
-            <h3>Thermal-only</h3>
-            <p class="muted">Accuracy / F1:</p>
-            <p class="big">__%</p>
-          </div>
-          <div class="panel">
-            <h3>Fused</h3>
-            <p class="muted">Best method:</p>
-            <p class="big">__</p>
-          </div>
-        </div>
+  <div class="panel">
+    <h3>Thermal-only</h3>
+    <p class="muted">mAP50 / mAP50–95:</p>
+    <p class="big" id="thMetricValue">__%</p>
+  </div>
 
-        <div class="panel mt">
-          <h3>Example Predictions</h3>
-          <p class="muted">Add images in <code>assets/</code> and update the filenames below.</p>
+  <div class="panel">
+    <h3>Fused</h3>
+    <p class="muted">Best method:</p>
+    <p class="big" id="fusedMetricValue">__</p>
+  </div>
+</div>
 
-          <div class="imgrow">
-            <figure>
-              <img src="assets/example_rgb.png" alt="RGB example" />
-              <figcaption>RGB model output</figcaption>
-            </figure>
-            <figure>
-              <img src="assets/example_thermal.png" alt="Thermal example" />
-              <figcaption>Thermal model output</figcaption>
-            </figure>
-            <figure>
-              <img src="assets/example_fusion.png" alt="Fusion example" />
-              <figcaption>Fused decision</figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="panel mt">
+  <h3>Example Predictions</h3>
+  <p class="muted" id="bestFusionLine">Best fusion: __</p>
+
+  <p class="muted">Add images in <code>assets/</code> and update the filenames below.</p>
+
+  <div class="imgrow">
+    <figure>
+      <img src="assets/example_rgb.png" alt="RGB example" />
+      <figcaption>RGB model output</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/example_thermal.png" alt="Thermal example" />
+      <figcaption>Thermal model output</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/example_fusion.png" alt="Fusion example" />
+      <figcaption>Fused decision</figcaption>
+    </figure>
+  </div>
+</div>
 
     <!-- TEAM -->
     <section class="section" id="team">
@@ -283,11 +277,11 @@
             <p class="muted">Fusion literature • Pipeline design • Promo materials</p>
           </div>
           <div class="panel">
-            <h3>Ziyan [Last Name]</h3>
+            <h3>Ziyan Huang</h3>
             <p class="muted">YOLO training • Dataset prep • Experiments</p>
           </div>
           <div class="panel">
-            <h3>Ara [Last Name]</h3>
+            <h3>Ara Esho</h3>
             <p class="muted">Evaluation support • Presentation integration</p>
           </div>
         </div>
